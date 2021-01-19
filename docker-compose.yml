@@ -10,5 +10,7 @@ services:
       MYSQL_USER: 'db_user'
       MYSQL_PASSWORD: '8b3b91c7'
       MYSQL_RANDOM_ROOT_PASSWORD: 'true'
+    cap_add:
+      - SYS_NICE
     ports:
     - '3306:3306'
