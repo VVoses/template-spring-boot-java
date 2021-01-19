@@ -40,7 +40,7 @@ public class CustomerController {
         return this.customerService.updateCustomer(customer, customer.getId()).getCart();
     }
 
-    @DeleteMapping("/customer{id}/carts")
+    @DeleteMapping("/customer{id}/cart")
     void deleteCart(@PathVariable Long id) {
         Customer customer = this.customerService.getCustomer(id);
         customer.setCart(new ArrayList<>());
@@ -53,19 +53,6 @@ public class CustomerController {
         customer.setCart(cart);
         this.customerService.updateCustomer(customer, id);
         return cart;
-    }
-
-    @GetMapping("/customer{id}/cart/checkout")
-    Map<Double, List<OrderProduct>> checkOut(@PathVariable Long id, @PathVariable Long cartId) {
-        Customer customer = this.customerService.getCustomer(id);
-
-        List<OrderProduct> cart = customer.getCart();
-        double total = 0.0;
-        for(OrderProduct product : cart) {
-            total += product.getQuantity()*product.getPrice();
-        }
-
-        return Map.of(total, cart);
     }
 
     @PostMapping("/register")
