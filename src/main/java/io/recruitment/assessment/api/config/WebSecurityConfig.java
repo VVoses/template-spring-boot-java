@@ -19,6 +19,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .withUser("user1").password("{noop}user1Pass").roles("USER")
                 .and()
                 .withUser("admin").password("{noop}adminPass").roles("ADMIN").roles("USER");
+        //TODO integrate with customerService
     }
 
     private BCryptPasswordEncoder passwordEncoder() {
@@ -31,5 +32,6 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
         .authorizeRequests().anyRequest().authenticated()
         .and()
         .httpBasic();
+        //TODO add role based access
     }
 }

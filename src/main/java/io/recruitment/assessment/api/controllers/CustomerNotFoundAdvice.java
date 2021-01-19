@@ -1,6 +1,6 @@
 package io.recruitment.assessment.api.controllers;
 
-import io.recruitment.assessment.api.model.CustomerNotFoundException;
+import io.recruitment.assessment.api.service.CustomerNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;

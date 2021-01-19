@@ -1,10 +1,10 @@
 package io.recruitment.assessment.api.model;
 
 import lombok.NoArgsConstructor;
+import org.hibernate.annotations.Cascade;
 
 import javax.persistence.*;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 @Entity
@@ -16,6 +16,7 @@ public class Customer {
 
     @ElementCollection
     private List<OrderProduct> cart;
+
     private String username;
     private String password;
 

@@ -4,6 +4,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.util.List;
+import java.util.Objects;
 
 @Entity
 @NoArgsConstructor
@@ -11,30 +12,50 @@ public class Ordre {
 
     @Id @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
-    @OneToMany
-    List<Product> items;
+    @ElementCollection
+    List<OrderProduct> items;
 
-    @OneToOne
-    Customer customer;
+    Long customerId;
 
-    public List<Product> getItems() {
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public List<OrderProduct> getItems() {
         return items;
     }
 
-    public void setItems(List<Product> items) {
+    public void setItems(List<OrderProduct> items) {
         this.items = items;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Long getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(Long customerId) {
+        this.customerId = customerId;
     }
 
-    public Ordre(List<Product> items, Customer customer) {
+    public Ordre(List<OrderProduct> items, Long customerId) {
         this.items = items;
-        this.customer = customer;
+        this.customerId = customerId;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof Ordre)) return false;
+        Ordre ordre = (Ordre) o;
+        return getId().equals(ordre.getId()) && getItems().equals(ordre.getItems()) && getCustomerId().equals(ordre.getCustomerId());
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(getId(), getItems(), getCustomerId());
     }
 }

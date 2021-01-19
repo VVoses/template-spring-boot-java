@@ -50,4 +50,8 @@ public class ProductController {
         this.productService.deleteProduct(id);
     }
 
+    //TODO: add proper input validation
+
+    //TODO: add role based access
+
 }

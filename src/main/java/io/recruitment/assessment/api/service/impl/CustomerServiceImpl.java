@@ -1,7 +1,7 @@
 package io.recruitment.assessment.api.service.impl;
 
 import io.recruitment.assessment.api.model.Customer;
-import io.recruitment.assessment.api.model.CustomerNotFoundException;
+import io.recruitment.assessment.api.service.CustomerNotFoundException;
 import io.recruitment.assessment.api.repository.CustomerRepository;
 import io.recruitment.assessment.api.service.CustomerService;
 import org.springframework.stereotype.Service;

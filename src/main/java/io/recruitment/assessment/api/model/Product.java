@@ -17,7 +17,6 @@ public class Product {
     private String description;
     private Double price;
     private Boolean isNews;
-    private int quantity;
 
     public Product(String name, String description, Double price, Boolean isNews) {
         this.name = name;
@@ -66,25 +65,17 @@ public class Product {
         isNews = news;
     }
 
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (!(o instanceof Product)) return false;
         Product product = (Product) o;
-        return getQuantity() == product.getQuantity() && getId().equals(product.getId()) && getName().equals(product.getName()) && getDescription().equals(product.getDescription()) && getPrice().equals(product.getPrice()) && isNews.equals(product.isNews);
+        return getId().equals(product.getId()) && getName().equals(product.getName()) && getDescription().equals(product.getDescription()) && getPrice().equals(product.getPrice()) && isNews.equals(product.isNews);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(getId(), getName(), getDescription(), getPrice(), isNews, getQuantity());
+        return Objects.hash(getId(), getName(), getDescription(), getPrice(), getNews());
     }
 
 }

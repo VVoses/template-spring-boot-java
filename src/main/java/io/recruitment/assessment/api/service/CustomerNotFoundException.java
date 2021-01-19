@@ -1,4 +1,4 @@
-package io.recruitment.assessment.api.model;
+package io.recruitment.assessment.api.service;
 
 public class CustomerNotFoundException extends RuntimeException{
 

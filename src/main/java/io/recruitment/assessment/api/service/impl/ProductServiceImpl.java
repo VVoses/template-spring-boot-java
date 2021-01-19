@@ -1,10 +1,9 @@
 package io.recruitment.assessment.api.service.impl;
 
 import io.recruitment.assessment.api.model.Product;
-import io.recruitment.assessment.api.model.ProductNotFoundException;
+import io.recruitment.assessment.api.service.ProductNotFoundException;
 import io.recruitment.assessment.api.repository.ProductRepository;
 import io.recruitment.assessment.api.service.ProductService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
