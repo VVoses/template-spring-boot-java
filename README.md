@@ -15,6 +15,8 @@ docker-compose up -d
 ## Building and running app
 Build jar with maven and run jar file with java.
 
+Authorize with username "user1" and password "{noop}user1Pass"
+
 Register user at "*/register". A user has a username, a password and a cart.
 
 Get all products and add new ones at "/products" A product has a name, a description, a price, and a boolean indicating whether it is in the news section or not.
