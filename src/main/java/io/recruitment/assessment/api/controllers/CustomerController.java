@@ -1,13 +1,11 @@
 package io.recruitment.assessment.api.controllers;
 
 import io.recruitment.assessment.api.model.Customer;
-import io.recruitment.assessment.api.model.Product;
+import io.recruitment.assessment.api.model.OrderProduct;
 import io.recruitment.assessment.api.service.CustomerService;
-import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,14 +19,14 @@ public class CustomerController {
     }
 
     @GetMapping("/customer{id}/cart")
-    List<Product> viewCart(@PathVariable Long id) {
+    List<OrderProduct> viewCart(@PathVariable Long id) {
         Customer customer = this.customerService.getCustomer(id);
 
         return customer.getCart();
     }
 
     @PostMapping("/customer{id}/cart")
-    List<Product> addCart(@PathVariable Long id, @RequestBody List<Product> cart) {
+    List<OrderProduct> addCart(@PathVariable Long id, @RequestBody List<OrderProduct> cart) {
         Customer customer = this.customerService.getCustomer(id);
         customer.setCart(cart);
 
@@ -43,7 +41,7 @@ public class CustomerController {
     }
 
     @PutMapping("/customer{id}/cart")
-    List<Product> updateCart(@PathVariable Long id, @RequestBody List<Product> cart) {
+    List<OrderProduct> updateCart(@PathVariable Long id, @RequestBody List<OrderProduct> cart) {
         Customer customer = this.customerService.getCustomer(id);
         customer.setCart(cart);
         this.customerService.updateCustomer(customer, id);
@@ -51,25 +49,39 @@ public class CustomerController {
     }
 
     @GetMapping("/customer{id}/cart/checkout")
-    Map<Double, List<Product>> checkOut(@PathVariable Long id, @PathVariable Long cartId) {
+    Map<Double, List<OrderProduct>> checkOut(@PathVariable Long id, @PathVariable Long cartId) {
         Customer customer = this.customerService.getCustomer(id);
 
-        List<Product> cart = customer.getCart();
+        List<OrderProduct> cart = customer.getCart();
         double total = 0.0;
-        for(Product product : cart) {
+        for(OrderProduct product : cart) {
             total += product.getQuantity()* product.getPrice();
         }
 
         return Map.of(total, cart);
     }
 
-    @PostMapping("/")
+    @PostMapping("/register")
     Customer addCustomer (@RequestBody Customer customer) {
         if(customer.getCart() == null) {
             customer.setCart(new ArrayList<>());
         }
         return this.customerService.addCustomer(customer);
     }
+
+    @DeleteMapping("customer{id}/delete")
+    void deleteCustomer (@PathVariable Long id) {
+        this.customerService.deleteCustomer(id);
+    }
+
+    @PutMapping("/customer{id}")
+    Customer updateCustomer (@PathVariable Long id, @RequestBody Customer customer) {
+        return this.customerService.updateCustomer(customer, id);
+    }
+
+
+
+
 
 
 }

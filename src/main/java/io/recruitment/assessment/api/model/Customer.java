@@ -14,13 +14,13 @@ public class Customer {
     private @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY) Long id;
 
-    @OneToMany
-    private List<Product> cart;
+    @ElementCollection
+    private List<OrderProduct> cart;
     private String username;
     private String password;
 
 
-    public Customer(List<Product> cart, String username, String password) {
+    public Customer(List<OrderProduct> cart, String username, String password) {
         this.cart = cart;
         this.username = username;
         this.password = password;
@@ -50,11 +50,11 @@ public class Customer {
         this.password = password;
     }
 
-    public List<Product> getCart() {
+    public List<OrderProduct> getCart() {
         return cart;
     }
 
-    public void setCart(List<Product> cart) {
+    public void setCart(List<OrderProduct> cart) {
         this.cart = cart;
     }
 
